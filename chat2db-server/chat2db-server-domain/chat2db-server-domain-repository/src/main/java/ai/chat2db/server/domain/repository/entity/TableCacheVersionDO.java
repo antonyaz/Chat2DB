@@ -74,5 +74,6 @@ public class TableCacheVersionDO implements Serializable {
     /**
      * 状态
      */
+    @TableField("`status`")
     private String status;
 }
