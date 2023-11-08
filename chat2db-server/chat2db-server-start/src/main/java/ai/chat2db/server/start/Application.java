@@ -5,6 +5,7 @@ import ai.chat2db.server.tools.common.model.ConfigJson;
 import ai.chat2db.server.tools.common.util.ConfigUtils;
 import ai.chat2db.server.tools.common.util.EasyEnumUtils;
 import cn.hutool.core.lang.UUID;
+import cn.hutool.crypto.SecureUtil;
 import com.dtflys.forest.springboot.annotation.ForestScan;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.ArrayUtils;
@@ -35,6 +36,7 @@ import org.springframework.stereotype.Indexed;
 public class Application {
 
     public static void main(String[] args) {
+        SecureUtil.disableBouncyCastle();
         String currentVersion = ConfigUtils.getLocalVersion();
         ConfigJson configJson = ConfigUtils.getConfig();
 
