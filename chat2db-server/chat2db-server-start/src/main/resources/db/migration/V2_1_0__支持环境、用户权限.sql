@@ -1,3 +1,4 @@
+drop table  if exists `environment`;
 CREATE TABLE IF NOT EXISTS `environment`
 (
     `id`               bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键',
@@ -5,9 +6,9 @@ CREATE TABLE IF NOT EXISTS `environment`
     `gmt_modified`     datetime            NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '修改时间',
     `create_user_id`   bigint(20) unsigned NOT NULL COMMENT '创建人用户id',
     `modified_user_id` bigint(20) unsigned NOT NULL COMMENT '修改人用户id',
-    `name`             varchar(128)                 DEFAULT NOT NULL COMMENT '环境名称',
-    `short_name`       varchar(128)                 DEFAULT NULL COMMENT '环境缩写',
-    `color`            varchar(32)                  DEFAULT NULL COMMENT '颜色',
+    `name`             varchar(128)         DEFAULT '' COMMENT '环境名称',
+    `short_name`       varchar(128)                 DEFAULT '' COMMENT '环境缩写',
+    `color`            varchar(32)                  DEFAULT '' COMMENT '颜色',
     PRIMARY KEY (`id`)
 ) ENGINE = InnoDB
   DEFAULT CHARSET = utf8mb4 COMMENT ='数据库连接环境'
@@ -47,11 +48,12 @@ ALTER TABLE `dbhub_user`
 update dbhub_user
 set role_code= 'DESKTOP',user_name='_desktop_default_user_name',password='_desktop_default_user_name',nick_name='Desktop User'
 where id = 1;
-INSERT INTO DBHUB_USER (USER_NAME, PASSWORD, NICK_NAME, EMAIL, ROLE_CODE) VALUES ('chat2db', 'chat2db', 'Administrator', null, 'ADMIN');
+INSERT INTO DBHUB_USER (USER_NAME, PASSWORD, NICK_NAME, EMAIL, ROLE_CODE) VALUES ('antony', 'zaqwsx', 'Administrator', null, 'ADMIN');
 
 create UNIQUE INDEX uk_user_user_name on dbhub_user (user_name);
 
 
+drop table IF exists `team`;
 CREATE TABLE IF NOT EXISTS `team`
 (
     `id`               bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键',
@@ -59,7 +61,7 @@ CREATE TABLE IF NOT EXISTS `team`
     `gmt_modified`     datetime            NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '修改时间',
     `create_user_id`   bigint(20) unsigned NOT NULL COMMENT '创建人用户id',
     `modified_user_id` bigint(20) unsigned NOT NULL COMMENT '修改人用户id',
-    `code`             varchar(128)                 DEFAULT NOT NULL COMMENT '团队编码',
+    `code`             varchar(128)                 DEFAULT '' COMMENT '团队编码',
     `name`             varchar(512)                 DEFAULT NULL COMMENT '团队名称',
     `status`           varchar(32)         NOT NULL DEFAULT 'VALID' COMMENT '团队状态',
     `description`      text                         DEFAULT NULL COMMENT '团队描述',
@@ -70,7 +72,7 @@ CREATE TABLE IF NOT EXISTS `team`
 
 create UNIQUE INDEX uk_team_code on team (code);
 
-
+drop table IF exists `team_user`;
 CREATE TABLE IF NOT EXISTS `team_user`
 (
     `id`               bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键',
@@ -89,6 +91,7 @@ create INDEX idx_team_user_team_id on team_user (`team_id`);
 create INDEX idx_team_user_user_id on team_user (`user_id`);
 create UNIQUE INDEX uk_team_user on team_user (`team_id`,`user_id`);
 
+drop table IF exists `data_source_access`;
 CREATE TABLE IF NOT EXISTS `data_source_access`
 (
     `id`                 bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键',

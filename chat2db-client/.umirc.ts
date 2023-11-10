@@ -54,7 +54,7 @@ export default defineConfig({
     {   rel:"icon",
     type:"image/ico",
     sizes:"32x32",
-    href:"/static/front/logo.ico" 
+    href:"/static/front/logo.ico"
   }
   ],
   headScripts: [
@@ -79,10 +79,6 @@ export default defineConfig({
     // window.addEventListener("appinstalled", () => {
     //   deferredPrompt = null;
     // })`,
-    {
-      src: 'https://www.googletagmanager.com/gtag/js?id=G-V8M4E5SF61',
-      async: true,
-    },
     // `window.dataLayer = window.dataLayer || [];
     // function gtag() {
     //   window.dataLayer.push(arguments);

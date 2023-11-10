@@ -1,12 +1,9 @@
 spring:
   datasource:
-    url: jdbc:mysql://localhost:3306/chat2db
+    url: jdbc:mysql://10.194.39.67:3306/chat2db
     driver-class-name: com.mysql.cj.jdbc.Driver
     username: root
-    password: root
-  # 配置自带数据库的相对路径
-#    url: jdbc:h2:~/.chat2db/db/chat2db_dev;MODE=MYSQL
-#    driver-class-name: org.h2.Driver
+    password: rDSq7c6yQEN$$1
   mysql:
     console:
       enabled: true
@@ -14,6 +11,9 @@ spring:
       settings:
         trace: true
         web-allow-others: true
+  # 配置自带数据库的相对路径
+#    url: jdbc:h2:~/.chat2db/db/chat2db_dev;MODE=MYSQL
+#    driver-class-name: org.h2.Driver
 #  h2:
 #    console:
 #      enabled: true

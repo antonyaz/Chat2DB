@@ -49,7 +49,7 @@ const Login: React.FC = () => {
             </div>
           }
         >
-          <div className={styles.whyLogin}>{i18n('login.text.tips.title')}</div>
+          {/*<div className={styles.whyLogin}>{i18n('login.text.tips.title')}</div>*/}
         </Tooltip>
 
         <Form className={styles.loginForm} size="large" onFinish={handleLogin}>
@@ -63,7 +63,7 @@ const Login: React.FC = () => {
           <Form.Item name="password" rules={[{ required: true, message: i18n('login.form.password.placeholder') }]}>
             <Input.Password placeholder={i18n('login.form.password')} />
           </Form.Item>
-          <div className={styles.defaultPasswordTips}>{i18n('login.tips.defaultPassword')}</div>
+          {/*<div className={styles.defaultPasswordTips}>{i18n('login.tips.defaultPassword')}</div>*/}
           <Button type="primary" htmlType="submit" className={styles.loginFormSubmit}>
             {i18n('login.button.login')}
           </Button>
