@@ -11,6 +11,7 @@ const { loadMainResource } = require('./utils');
 let mainWindow = null;
 
 let baseUrl = null;
+let _forceQuitCode = false;
 
 function createWindow() {
   mainWindow = new BrowserWindow({
@@ -78,7 +79,7 @@ app.on('before-quit', () => {
           'Content-Type': 'application/json',
         },
         method: 'POST',
-        url: `${baseUrl}/api/system/stop`,
+        url: `${baseUrl}/api/system/stop?forceQuit=${_forceQuitCode}`,
       });
       request.end();
     } catch (error) {}
@@ -91,8 +92,9 @@ ipcMain.handle('get-product-name', () => {
   return name;
 });
 
-// 注册退出应用事件
+// 重启app
 ipcMain.on('quit-app', () => {
+  app.relaunch();
   app.quit();
 });
 
@@ -102,6 +104,10 @@ ipcMain.on('register-app-menu', (event, orgs) => {
 
 ipcMain.on('set-base-url',(event,_baseUrl)=>{
   baseUrl = _baseUrl;
+})
+
+ipcMain.on('set-force-quit-code',(event,_forceQuitCode)=>{
+  forceQuitCode = _forceQuitCode;
 })
 
 

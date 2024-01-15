@@ -480,6 +480,9 @@ public class ChatController {
     private SseEmitter chatWithWenxinAi(ChatQueryRequest queryRequest, SseEmitter sseEmitter, String uid) throws IOException {
         String prompt = buildPrompt(queryRequest);
         List<FastChatMessage> messages = getFastChatMessage(uid, prompt);
+        if (messages.size() >= 2 && messages.size() % 2 == 0) {
+            messages.remove(messages.size() - 1);
+        }
 
         buildSseEmitter(sseEmitter, uid);
 
@@ -623,7 +626,8 @@ public class ChatController {
             default:
                 break;
         }
-        return schemaProperty;
+        String cleanedInput = schemaProperty.replaceAll("[\r\t]", "");
+        return cleanedInput;
     }
 
     /**

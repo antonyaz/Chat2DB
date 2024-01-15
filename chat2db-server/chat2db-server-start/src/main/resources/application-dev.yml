@@ -1,3 +1,4 @@
+# 端口号
 spring:
   datasource:
     url: jdbc:mysql://localhost:3306/chat2db
@@ -21,7 +22,6 @@ spring:
 #      settings:
 #        trace: true
 #        web-allow-others: true
-# 端口号
 server:
   port: 10821
 
@@ -29,3 +29,8 @@ chat2db:
   gateway:
     base-url: http://test.sqlgpt.cn/gateway
     model-base-url: http://test.sqlgpt.cn/gateway
+management:
+  endpoints:
+    web:
+      exposure:
+        include: startup

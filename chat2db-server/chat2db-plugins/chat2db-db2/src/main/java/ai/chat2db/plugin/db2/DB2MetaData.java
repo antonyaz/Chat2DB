@@ -8,6 +8,7 @@ import java.util.stream.Collectors;
 
 import ai.chat2db.plugin.db2.builder.DB2SqlBuilder;
 import ai.chat2db.plugin.db2.type.DB2ColumnTypeEnum;
+import ai.chat2db.plugin.db2.type.DB2DefaultValueEnum;
 import ai.chat2db.plugin.db2.type.DB2IndexTypeEnum;
 import ai.chat2db.spi.MetaData;
 import ai.chat2db.spi.SqlBuilder;
@@ -20,6 +21,7 @@ import ai.chat2db.spi.model.TableMeta;
 import ai.chat2db.spi.sql.SQLExecutor;
 import ai.chat2db.spi.util.SortUtils;
 import com.google.common.collect.Lists;
+import org.apache.commons.lang3.StringUtils;
 
 public class DB2MetaData extends DefaultMetaService implements MetaData {
 
@@ -152,7 +154,12 @@ public class DB2MetaData extends DefaultMetaService implements MetaData {
                 .charsets(Lists.newArrayList())
                 .collations(Lists.newArrayList())
                 .indexTypes(DB2IndexTypeEnum.getIndexTypes())
+                .defaultValues(DB2DefaultValueEnum.getDefaultValues())
                 .build();
+    }
+    @Override
+    public String getMetaDataName(String... names) {
+        return Arrays.stream(names).filter(name -> StringUtils.isNotBlank(name)).map(name -> "\"" + name + "\"").collect(Collectors.joining("."));
     }
 
 }

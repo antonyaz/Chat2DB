@@ -20,13 +20,40 @@ export default defineConfig({
   publicPath: '/',
   hash: true,
   routes: [
-    { path: '/demo', component: '@/pages/demo' },
-    { path: '/connections', component: 'main' },
-    { path: '/workspace', component: 'main' },
-    { path: '/dashboard', component: 'main' },
-    { path: '/login', component: '@/pages/login' },
-    { path: '/test', component: '@/pages/test' },
-    { path: '/', component: 'main' },
+    {
+      path: '/',
+      component: '@/layouts/GlobalLayout',
+      routes: [
+        {
+          path: '/login',
+          component: '@/pages/login',
+        },
+        {
+          path: '/demo',
+          component: '@/pages/demo',
+        },
+        {
+          path: '/connections',
+          component: 'main',
+        },
+        {
+          path: '/dashboard',
+          component: 'main',
+        },
+        {
+          path: '/team',
+          component: 'main',
+        },
+        {
+          path: '/workspace',
+          component: 'main',
+        },
+        {
+          path: '/',
+          component: 'main',
+        },
+      ],
+    },
   ],
 
   npmClient: 'yarn',
@@ -58,9 +85,9 @@ export default defineConfig({
   }
   ],
   headScripts: [
-    `if (localStorage.getItem('app-local-storage-versions') !== 'v3') {
+    `if (localStorage.getItem('app-local-storage-versions') !== 'v4') {
       localStorage.clear();
-      localStorage.setItem('app-local-storage-versions', 'v3');
+      localStorage.setItem('app-local-storage-versions', 'v4');
     }`,
     `if (window.electronApi) { window.electronApi.startServerForSpawn() }`,
     // `if ("serviceWorker" in navigator) {
@@ -96,5 +123,5 @@ export default defineConfig({
     __APP_VERSION__: yarn_config.app_version || '0.0.0',
     __APP_PORT__: yarn_config.app_port,
   },
-  esbuildMinifyIIFE: true
+  esbuildMinifyIIFE: true,
 });

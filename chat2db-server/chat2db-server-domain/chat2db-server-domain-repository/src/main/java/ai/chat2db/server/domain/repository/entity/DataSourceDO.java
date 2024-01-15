@@ -130,4 +130,15 @@ public class DataSourceDO implements Serializable {
      * 连接类型
      */
     private String kind;
+
+    /**
+     * 服务名称
+     */
+    private String serviceName;
+
+    /**
+     * 服务类型
+     */
+    private String serviceType;
+
 }

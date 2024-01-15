@@ -6,6 +6,7 @@ export default {
   'setting.nav.aboutUs': '关于我们',
   'setting.title.backgroundColor': '背景色',
   'setting.title.themeColor': '主题色',
+  'setting.title.sqlEditorFontSize': 'SQL编辑器字体大小',
   'setting.label.blue': '蓝蓬釉',
   'setting.label.green': '极光绿',
   'setting.label.violet': '酱紫',
@@ -50,8 +51,10 @@ export default {
   'setting.text.autoUpdate': '新版自动下载并安装更新',
   'setting.text.manualUpdate': '仅在新版本发布时提醒我',
   'setting.button.iSee': '我知道了',
-  'setting.text.newEditionIsReady': '新版本以下载完成, 重启软件将会安装新版本',
+  'setting.text.newEditionIsReady': '新版本已下载完成, 重启软件将会安装新版本',
   'setting.button.goToUpdate': '前往更新',
   'setting.text.UpdatedLatestVersion': '已更新到最新版本 {1}',
+  'setting.title.holdingService': '保持服务',
+  'setting.text.holdingService': '退出应用时保持服务，加快启动速度',
 
 };
